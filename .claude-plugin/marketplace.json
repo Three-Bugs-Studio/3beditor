@@ -1,11 +1,11 @@
 {
   "name": "3bstudio",
   "owner": {
-    "name": "3bstudio",
-    "url": "https://github.com/DongDuong2001"
+    "name": "Three Bugs Studio",
+    "url": "https://github.com/Three-Bugs-Studio"
   },
   "metadata": {
-    "description": "Free video tools for Claude Code by 3bstudio"
+    "description": "Free video tools for Claude Code by Three Bugs Studio"
   },
   "plugins": [
     {

@@ -16,7 +16,7 @@ Made with gym and training videos in mind, but it works for any footage. It spea
 
 2. **In Claude Code:**
    ```
-   /plugin marketplace add DongDuong2001/3beditor
+   /plugin marketplace add Three-Bugs-Studio/3beditor
    /plugin install 3beditor@3bstudio
    ```
    Restart Claude Code. To update later: `/plugin marketplace update 3bstudio`.

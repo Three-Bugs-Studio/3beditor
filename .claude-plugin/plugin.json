@@ -2,9 +2,9 @@
   "name": "3beditor",
   "version": "0.9.0",
   "description": "Edit your clips into a finished TikTok/Reels/Shorts video by talking to Claude: pick a style or show a reference video, approve a storyboard, get an MP4. Clean cuts on the beat, motivated effects, Vietnamese-safe captions.",
-  "author": { "name": "3bstudio", "url": "https://github.com/DongDuong2001" },
-  "homepage": "https://github.com/DongDuong2001/3beditor",
-  "repository": "https://github.com/DongDuong2001/3beditor",
+  "author": { "name": "Three Bugs Studio", "url": "https://github.com/Three-Bugs-Studio" },
+  "homepage": "https://github.com/Three-Bugs-Studio/3beditor",
+  "repository": "https://github.com/Three-Bugs-Studio/3beditor",
   "license": "MIT",
   "keywords": ["video", "editing", "ffmpeg", "tiktok", "reels", "shorts", "captions", "gym", "vietnamese"]
 }
