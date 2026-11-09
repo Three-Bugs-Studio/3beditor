@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "name": "Cinematic",
+  "description": "Slow, wide and filmic with soft fades between scenes and minimal text.",
+  "best_for": "travel, gym tours, brand stories",
+  "edit": {
+    "transition": {
+      "type": "fade",
+      "duration": 0.5
+    },
+    "fade_in": 0.8,
+    "fade_out": 1.2,
+    "color": {
+      "contrast": 1.08,
+      "saturation": 0.85,
+      "warmth": 0.2,
+      "teal_orange": 0.5,
+      "crush": 0.4,
+      "vignette": true,
+      "grain": 0.15
+    },
+    "caption_style": {
+      "position": "center",
+      "size": 90,
+      "color": "#FFFFFF",
+      "outline_color": "#000000",
+      "box": false,
+      "uppercase": true,
+      "bold": false,
+      "animation": "fade",
+      "outline": 2,
+      "spacing": 8
+    },
+    "loudness_lufs": -16,
+    "fps": 24
+  },
+  "source": "preset:cinematic",
+  "format": {
+    "aspect": "16:9"
+  },
+  "pacing": {
+    "avg_shot_s": 4.5,
+    "cuts_per_min": 12
+  },
+  "color": {
+    "brightness_0_255": 95,
+    "saturation_0_255": 70,
+    "warmth": 6
+  },
+  "audio": {
+    "integrated_lufs": -16
+  },
+  "visual_notes": {
+    "captions": {
+      "present": false
+    },
+    "transitions": "slow fades between scenes, 0.5-1 s",
+    "framing": "wide establishing shots, steady",
+    "mood": "calm, moody, warm shadows"
+  },
+  "transition_mix": {
+    "default": "fade",
+    "accents": [
+      "dip_black",
+      "fade_grays",
+      "blur"
+    ],
+    "accent_every_n_cuts": 3
+  }
+}

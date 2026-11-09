@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "name": "Podcast Clip",
+  "description": "Clear speaker framing with bold yellow word captions in the middle.",
+  "best_for": "coach talks, Q&A, podcast moments",
+  "edit": {
+    "transition": {
+      "type": "cut"
+    },
+    "color": {
+      "contrast": 1.05,
+      "saturation": 1.0
+    },
+    "caption_style": {
+      "position": "center",
+      "size": 84,
+      "color": "#FFE600",
+      "outline_color": "#000000",
+      "box": false,
+      "uppercase": false,
+      "bold": true,
+      "reveal": "karaoke",
+      "outline": 6,
+      "highlight_color": "#FFFFFF"
+    },
+    "loudness_lufs": -14,
+    "fps": 30
+  },
+  "source": "preset:podcast-clip",
+  "format": {
+    "aspect": "9:16"
+  },
+  "pacing": {
+    "avg_shot_s": 6.0,
+    "cuts_per_min": 10
+  },
+  "color": {
+    "brightness_0_255": 115,
+    "saturation_0_255": 80,
+    "warmth": 2
+  },
+  "audio": {
+    "integrated_lufs": -14
+  },
+  "visual_notes": {
+    "captions": {
+      "present": true,
+      "position": "center",
+      "case": "sentence",
+      "words_per_caption": 4,
+      "color": "#FFE600",
+      "box": false,
+      "font_feel": "bold sans, yellow, outlined"
+    },
+    "transitions": "hard cuts between speakers",
+    "framing": "speaker cropped to vertical, punch-in on key lines",
+    "mood": "conversational"
+  },
+  "transition_mix": {
+    "default": "cut",
+    "accents": [
+      "zoom_punch"
+    ],
+    "accent_every_n_cuts": 6
+  }
+}

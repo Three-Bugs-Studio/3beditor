@@ -1,0 +1,18 @@
+{
+  "name": "3bstudio",
+  "owner": {
+    "name": "3bstudio",
+    "url": "https://github.com/DongDuong2001"
+  },
+  "metadata": {
+    "description": "Free video tools for Claude Code by 3bstudio"
+  },
+  "plugins": [
+    {
+      "name": "3beditor",
+      "source": "./",
+      "description": "Edit your clips into a finished short video by talking to Claude: styles, storyboard, clean cuts on the beat, Vietnamese-safe captions.",
+      "category": "productivity"
+    }
+  ]
+}

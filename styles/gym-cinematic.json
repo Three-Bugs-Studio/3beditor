@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "name": "Gym Cinematic",
+  "description": "Moody film look: teal shadows, warm skin, deep blacks, slow motion on the key rep, fades.",
+  "best_for": "a single lift or set, transformation teasers, coach promos",
+  "edit": {
+    "transition": {
+      "type": "cut"
+    },
+    "fade_in": 0.6,
+    "fade_out": 1.0,
+    "color": {
+      "brightness": 0.07,
+      "contrast": 1.1,
+      "saturation": 0.9,
+      "warmth": -0.35,
+      "teal_orange": 0.7,
+      "crush": 0.5,
+      "vignette": true,
+      "grain": 0.25
+    },
+    "caption_style": {
+      "position": "top",
+      "size": 120,
+      "color": "#FFFFFF",
+      "outline_color": "#000000",
+      "box": false,
+      "uppercase": true,
+      "bold": true,
+      "animation": "fade",
+      "outline": 2,
+      "shadow": 3,
+      "blur": 1,
+      "spacing": 6
+    },
+    "loudness_lufs": -14,
+    "fps": 24
+  },
+  "source": "preset:gym-cinematic (measured from a YouTube Shorts cinematic gym edit, 10 s)",
+  "format": {
+    "aspect": "9:16"
+  },
+  "pacing": {
+    "avg_shot_s": 1.4,
+    "cuts_per_min": 37,
+    "avg_shot_by_third_s": [
+      2.7,
+      1.5,
+      0.9
+    ]
+  },
+  "color": {
+    "brightness_0_255": 71,
+    "saturation_0_255": 16,
+    "warmth": -14
+  },
+  "audio": {
+    "integrated_lufs": -14
+  },
+  "visual_notes": {
+    "captions": {
+      "present": true,
+      "position": "center",
+      "case": "upper",
+      "words_per_caption": 2,
+      "color": "#FFFFFF",
+      "box": false,
+      "font_feel": "small spaced uppercase labels, big bold yellow title for hook and outro"
+    },
+    "transitions": "hard cuts that speed up towards the end",
+    "framing": "wide, close and b-roll shots of one lifter, moody top light, slow motion on details",
+    "text_overlays": "hook title first 2 s, 'follow for more' end card",
+    "mood": "dark, cool teal shadows, cinematic"
+  },
+  "transition_mix": {
+    "default": "cut",
+    "accents": [
+      "dip_black",
+      "blur",
+      "flash"
+    ],
+    "accent_every_n_cuts": 4
+  }
+}

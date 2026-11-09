@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "name": "TikTok Fast",
+  "description": "Bright, punchy and fast: big centred word captions, punch-in zooms, cuts on the beat.",
+  "best_for": "tips, talking-head clips, trends",
+  "edit": {
+    "transition": {
+      "type": "cut"
+    },
+    "color": {
+      "brightness": 0.03,
+      "contrast": 1.08,
+      "saturation": 1.2
+    },
+    "caption_style": {
+      "position": "center",
+      "size": 96,
+      "color": "#FFFFFF",
+      "outline_color": "#000000",
+      "box": false,
+      "uppercase": true,
+      "bold": true,
+      "reveal": "karaoke",
+      "animation": "pop",
+      "outline": 8,
+      "shadow": 2
+    },
+    "loudness_lufs": -14,
+    "fps": 30
+  },
+  "source": "preset:tiktok-fast",
+  "format": {
+    "aspect": "9:16"
+  },
+  "pacing": {
+    "avg_shot_s": 1.2,
+    "cuts_per_min": 45
+  },
+  "color": {
+    "brightness_0_255": 125,
+    "saturation_0_255": 95,
+    "warmth": 3
+  },
+  "audio": {
+    "integrated_lufs": -14
+  },
+  "visual_notes": {
+    "captions": {
+      "present": true,
+      "position": "center",
+      "case": "upper",
+      "words_per_caption": 2,
+      "color": "#FFFFFF",
+      "box": false,
+      "font_feel": "bold sans, thick black outline"
+    },
+    "transitions": "hard cuts, many on the beat",
+    "framing": "tight, punch-in zoom 1.1-1.2 every 2-3 shots",
+    "mood": "energetic"
+  },
+  "transition_mix": {
+    "default": "cut",
+    "accents": [
+      "whip_left",
+      "whip_right",
+      "zoom_punch",
+      "flash"
+    ],
+    "accent_every_n_cuts": 3
+  }
+}

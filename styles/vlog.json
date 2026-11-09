@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "name": "Vlog",
+  "description": "Warm, friendly and natural with clean boxed subtitles at the bottom.",
+  "best_for": "day-in-the-life, gym routines with talking",
+  "edit": {
+    "transition": {
+      "type": "cut"
+    },
+    "color": {
+      "brightness": 0.03,
+      "saturation": 1.05,
+      "warmth": 0.25
+    },
+    "caption_style": {
+      "position": "bottom",
+      "size": 64,
+      "color": "#FFFFFF",
+      "outline_color": "#000000",
+      "box": true,
+      "uppercase": false,
+      "bold": true,
+      "reveal": "build",
+      "animation": "pop"
+    },
+    "loudness_lufs": -14,
+    "fps": 30
+  },
+  "source": "preset:vlog",
+  "format": {
+    "aspect": "16:9"
+  },
+  "pacing": {
+    "avg_shot_s": 3.0,
+    "cuts_per_min": 20
+  },
+  "color": {
+    "brightness_0_255": 125,
+    "saturation_0_255": 90,
+    "warmth": 4
+  },
+  "audio": {
+    "integrated_lufs": -14
+  },
+  "visual_notes": {
+    "captions": {
+      "present": true,
+      "position": "bottom",
+      "case": "sentence",
+      "words_per_caption": 6,
+      "color": "#FFFFFF",
+      "box": true,
+      "font_feel": "clean sans on dark box"
+    },
+    "transitions": "jump cuts on pauses, occasional fade",
+    "framing": "talking head with b-roll every 10-15 s",
+    "mood": "friendly"
+  },
+  "transition_mix": {
+    "default": "cut",
+    "accents": [
+      "whip_left",
+      "swipe_up",
+      "fade"
+    ],
+    "accent_every_n_cuts": 5
+  }
+}

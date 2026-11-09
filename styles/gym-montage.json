@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "name": "Gym Montage",
+  "description": "Raw, gritty, almost black-and-white hype montage with a fixed title on top.",
+  "best_for": "lifting PRs, gym highlight reels, crowd hype",
+  "edit": {
+    "transition": {
+      "type": "cut"
+    },
+    "fit": "contain",
+    "color": {
+      "brightness": 0.06,
+      "contrast": 1.15,
+      "saturation": 0.55,
+      "grain": 0.2
+    },
+    "caption_style": {
+      "position": "top",
+      "size": 72,
+      "color": "#FFFFFF",
+      "outline_color": "#000000",
+      "box": false,
+      "uppercase": false,
+      "bold": true,
+      "animation": "fade",
+      "outline": 3
+    },
+    "loudness_lufs": -14,
+    "fps": 30
+  },
+  "source": "preset:gym-montage (measured from a TikTok 'Hit that PR' gym edit, 32 s)",
+  "format": {
+    "aspect": "9:16",
+    "letterboxed": true,
+    "content_aspect": "4:3"
+  },
+  "pacing": {
+    "avg_shot_s": 1.7,
+    "cuts_per_min": 33,
+    "avg_shot_by_third_s": [
+      1.2,
+      2.2,
+      2.7
+    ]
+  },
+  "color": {
+    "brightness_0_255": 92,
+    "saturation_0_255": 5,
+    "warmth": 4
+  },
+  "audio": {
+    "integrated_lufs": -14
+  },
+  "visual_notes": {
+    "captions": {
+      "present": true,
+      "position": "top",
+      "case": "sentence",
+      "words_per_caption": 3,
+      "color": "#FFFFFF",
+      "box": false,
+      "font_feel": "plain bold sans, white, one fixed title above the picture for the whole video"
+    },
+    "transitions": "hard cuts, fast montage of 1-2 s shots, then one longer hero moment (the PR) at the end",
+    "framing": "footage in a 4:3 strip on black bars (fit: contain), handheld, crowd hype and lifter faces",
+    "text_overlays": "short title like 'Hit that PR' for the whole video",
+    "mood": "raw, gritty, desaturated almost black-and-white, hype"
+  },
+  "transition_mix": {
+    "default": "cut",
+    "accents": [
+      "flash",
+      "zoom_punch",
+      "glitch"
+    ],
+    "accent_every_n_cuts": 4
+  }
+}
