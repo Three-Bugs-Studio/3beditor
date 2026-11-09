@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 dist/
 3beditor_work/
+.pudo/
