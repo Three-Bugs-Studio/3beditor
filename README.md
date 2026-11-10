@@ -90,6 +90,11 @@ python -m pytest -q tests
 
 Sound effects and several editing rules (safe areas, take picking, sound restraint) come from [ghost-editor](https://github.com/kurbaitaev/ghost-editor) (MIT). The sounds are CC0, see `sfx/CREDITS.md`.
 
+## Contributing
+
+Fork it, change it, send a pull request: see [CONTRIBUTING.md](CONTRIBUTING.md). Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## License
 
-MIT. Free to use, change and share.
+MIT. Free to use, change and share, as long as you keep the copyright notice.
+Made by Duong Phu Dong ([@DongDuong2001](https://github.com/DongDuong2001)) at Three Bugs Studio.
