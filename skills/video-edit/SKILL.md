@@ -34,6 +34,7 @@ Scripts are in `../../scripts/` relative to this skill's base directory. Run `py
    | `music.cut_on_beat_ratio` > 0.5 and the user gave music | run `analyze.py` on the music file, then put cut points on its `music.beats_s` |
    | `speech.words` | cut on word `end` times, never mid-word. Keep sentences whole |
    | `color` (style vs. footage average) | `color.saturation` ≈ style_sat / footage_sat (0.5–2), `brightness` ≈ (style − footage) / 255, `warmth` ≈ (style − footage) / 20, clamped −1..1 |
+   | big moments the viewer should feel (the PR rep, plates hitting the floor) | at most one `sfx` per ~10 s, only with a reason. Built-ins and levels are in `craft.md` ("Sound effects") |
    | `visual_notes.captions` | `captions` built from transcript words, grouped `words_per_caption` at a time, with start = first word start and end = last word end (copy each word's time into `words` for reveal). `caption_style` comes from position, case, colour, box, stroke and motion (`reveal`, `animation`, `highlight`). See the SubText recipes in `craft.md` |
    | caption font | the customer's font, or one that looks like the reference. For Vietnamese, only fonts from `python <scripts>/fonts.py list --vietnamese` or a Việt hóa `font_file`. The render refuses fonts with missing letters |
    | `pacing.transitions` + `visual_notes.transitions` | start with **hard cuts everywhere**, then run `python <scripts>/fx_plan.py <edl> --style <style>`. It adds an effect only where one is motivated: a hit (`flash`/`zoom_punch`) on a real energy rise, a whip that follows real motion, a soft `fade`/`dip_black` on a scene or time change. Same-angle cuts stay hard cuts. Never add effects for variety; at most about 1 per 4-6 cuts and 2 kinds per video |
@@ -57,5 +58,6 @@ Scripts are in `../../scripts/` relative to this skill's base directory. Run `py
    - `pacing.*` too slow: shorten or split clips. Too fast: lengthen them.
    - `color.*` off: move the matching `color` value by the difference. **Exception:** when the reference and the footage are different kinds of content (a bright graphics or UI ad vs. camera or game footage, or day vs. night), don't chase `brightness`. Forcing it washes out the footage. Report it as an intended difference instead.
    - `audio.integrated_lufs` off: check that `loudness_lufs` is set and the music isn't clipping.
+   - `audio.true_peak_dbtp` above -1: lower the music `volume` or the loudest `sfx` `volume_db`, never the loudness target.
    Re-render, at most 2 rounds.
 7. **Report:** the output path, its length, a short table of target vs. actual for each check, and anything you couldn't match and why. Offer tweaks ("faster hook?", "different music volume?").

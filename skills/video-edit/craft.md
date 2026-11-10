@@ -53,3 +53,21 @@ Readable on a phone: 2-4 words per caption, at least 70 px at 1080×1920, stroke
 3. **Never on a same-angle cut.** Rep-to-rep from one camera, an effect looks random. Match the pose and cut hard.
 4. **Budget:** about one effect per 4-6 cuts, at most two kinds per video, and stay inside one family (TikTok hits or cinematic soft, not both).
 5. **Analyze, then choose:** `fx_plan.py` measures each cut and explains its suggestion. Show that to the customer instead of a menu of effects.
+6. **Numbers from real top reels** (ghost-editor's study of 6 top reels): 113 of 119 transitions were hard cuts, the median shot was about 3 s, and there were 0.4-0.9 audible sound effects per 10 s.
+
+## Sound effects (`sfx` in the EDL)
+
+Built-in CC0 sounds: `boom`, `clang`, `whoosh`, `riser`, `glitch` (`sfx/CREDITS.md`). They follow the same restraint as transitions:
+
+- **Only with a reason:** `boom` on the PR rep or the final reveal, `clang` when plates or a bar actually hit the floor, `whoosh` or `glitch` only under a whip or glitch transition (starting about 0.15 s before the cut), `riser` for the 2 s before the heaviest set.
+- **At most about one per 10 s,** never the same sound twice in a video, and none at all is a fine answer.
+- **Never on top of a spoken word.** Put it in a pause (check `speech.words`).
+- **Level:** `volume_db` -8 for `boom` and `clang`, -12 for `whoosh` and `glitch`, -14 for `riser`. The render's loudness pass levels the whole mix, so never raise the final volume to make a sound louder; lower the music instead.
+
+## Lessons borrowed from ghost-editor
+
+- **Talking clips (coach tips, PR stories):** transcribe everything and choose from the words, never by scrubbing. Of several tries at one sentence, keep the fluent, later one. Cut each take from 0.10-0.15 s before its first word to 0.20-0.30 s after its last, and trim pauses over 0.8 s.
+- **Between two takes of the same sentence from one camera,** hide the jump with a hard cut plus a small zoom change (1.0 → 1.15), not a dissolve. At most about three punch-ins per video.
+- **Text stays out of the app's buttons:** the render keeps bottom captions above TikTok's caption area and away from the right-hand button column. Keep big titles near the top or centre, never over the face.
+- **The loop point:** TikTok and Reels loop the video. A `fade_out` to black flashes on every loop, so leave it out for short looping reels unless a dark ending is the point.
+- **Check true peak:** `analyze.py --target` also fails if the true peak is above -1 dBTP, which clips after the app re-encodes the upload.

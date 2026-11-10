@@ -60,10 +60,14 @@ SCHEMA = """
                     karaoke: the whole line shows and the spoken word lights up in highlight_color.
                     Every caption character must exist in the font, or the render stops (no silent font swap).
   "music": {"src": "song.mp3", "volume": 0.3, "start": 0.0},
+  "sfx": [{"src": "boom", "at": 6.2, "volume_db": -8}],  sound effects at output-timeline seconds. src: a built-in
+                                             sound (boom, clang, whoosh, riser, glitch; see sfx/CREDITS.md)
+                                             or a file. volume_db defaults to -10 (all sounds peak at about -1 dBFS)
   "loudness_lufs": -14
 }
 """
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
+SFX_DIR = Path(__file__).resolve().parent.parent / "sfx"
 ALIGN = {"bottom": 2, "center": 5, "top": 8}  # ASS numpad alignment
 
 
@@ -205,6 +209,15 @@ def load(edl_path):
         if mp == out:
             raise EDLError("output would overwrite an input")
         music = {**music, "path": mp}
+    sfx = []
+    for j, s in enumerate(edl.get("sfx") or []):
+        name = str(s.get("src", ""))
+        sp = SFX_DIR / f"{name}.wav" if (SFX_DIR / f"{name}.wav").is_file() else (base / name).resolve()
+        if not name or not sp.is_file():
+            raise EDLError(f"sfx {j}: '{name}' is not a built-in sound ({', '.join(sorted(p.stem for p in SFX_DIR.glob('*.wav')))}) or a file")
+        if float(s.get("at", -1)) < 0:
+            raise EDLError(f"sfx {j}: needs 'at' >= 0 (output-timeline seconds)")
+        sfx.append({**s, "path": sp})
     for j, cap in enumerate(edl.get("captions") or []):
         if not cap.get("text") or float(cap["end"]) <= float(cap["start"]):
             raise EDLError(f"caption {j}: needs text and end > start")
@@ -226,7 +239,7 @@ def load(edl_path):
         if val is not None and not re.fullmatch(r"#[0-9A-Fa-f]{6}", val):
             raise EDLError(f"caption_style.{key} must be #RRGGBB, got {val!r}")
     w, h = edl.get("size") or [1080, 1920]
-    return {**edl, "out": out, "clips": clips, "music": music, "font": font,
+    return {**edl, "out": out, "clips": clips, "music": music, "sfx": sfx, "font": font,
             "chain": any(c["tin"]["type"] != "cut" for c in clips),
             "w": int(w) // 2 * 2, "h": int(h) // 2 * 2, "fps": edl.get("fps", 30)}
 
@@ -335,11 +348,14 @@ def write_ass(edl, path):
           "uppercase": False, "bold": True, "italic": False, "outline": 4, "shadow": 0, "blur": 0, "spacing": 0,
           "highlight_color": "#FFE600", "animation": "none", "reveal": "none", **(edl.get("caption_style") or {})}
     margin = int(edl["h"] * 0.12)
+    # vertical video: keep text clear of TikTok/Reels/Shorts overlays (button column on the right, caption text at the bottom)
+    portrait = edl["h"] > edl["w"]
+    side, bottom = (int(edl["w"] * 0.14), int(edl["h"] * 0.25)) if portrait else (60, margin)
     family = edl["font"]["family"] if edl.get("font") else "Arial"
     style = (f"Style: Default,{family},{st['size']},{ass_color(st['color'])},&H000000FF,"
              f"{ass_color(st['outline_color'])},&H80000000,{-1 if st['bold'] else 0},{-1 if st['italic'] else 0},"
              f"0,0,100,100,{st['spacing']},0,{3 if st['box'] else 1},{st['outline']},{st['shadow']},"
-             f"{ALIGN.get(st['position'], 2)},60,60,{margin},1")
+             f"{ALIGN.get(st['position'], 2)},{side},{side},{margin},1")
     lines = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {edl['w']}", f"PlayResY: {edl['h']}", "",
              "[V4+ Styles]",
              "Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,"
@@ -347,8 +363,9 @@ def write_ass(edl, path):
              "MarginV,Encoding", style, "", "[Events]",
              "Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text"]
     for c in edl["captions"]:
+        mv = bottom if c.get("position", st["position"]) == "bottom" else 0  # 0 = the style's margin
         for t0, t1, text in caption_events(c, st):
-            lines.append(f"Dialogue: 0,{ass_time(t0)},{ass_time(t1)},Default,,0,0,0,,{text}")
+            lines.append(f"Dialogue: 0,{ass_time(t0)},{ass_time(t1)},Default,,0,0,{mv},,{text}")
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
 
 
@@ -463,6 +480,17 @@ def build(edl, preview=False):
         fg.append(f"{a}[mus]amix=inputs=2:duration=first:normalize=0[amix]")
         a = "[amix]"
         n += 1
+    hits = [s for s in edl.get("sfx") or [] if float(s["at"]) < total]
+    for j, s in enumerate(hits):
+        ms = round(float(s["at"]) * 1000)
+        cmd += ["-i", str(s["path"])]
+        fg.append(f"[{n}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
+                  f"volume={float(s.get('volume_db', -10))}dB,adelay={ms}:all=1[sfx{j}]")
+        n += 1
+    if hits:
+        fg.append(a + "".join(f"[sfx{j}]" for j in range(len(hits)))
+                  + f"amix=inputs={len(hits) + 1}:duration=first:normalize=0[asfx]")
+        a = "[asfx]"
     if fi or fo:
         fades = ([f"afade=t=in:st=0:d={fi}"] if fi else []) + ([f"afade=t=out:st={max(0, total - fo):.3f}:d={fo}"] if fo else [])
         fg.append(f"{a}{','.join(fades)}[afd]")

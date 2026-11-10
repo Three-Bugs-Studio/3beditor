@@ -142,3 +142,29 @@ def test_slow_motion_fades_and_film_look(media):
     assert float(first.split("YAVG=")[1].split()[0]) < 30  # starts from black
     with pytest.raises(render.EDLError, match="speed"):
         render.load(write_edl(media, clips=[{"src": "a.mp4", "in": 0, "out": 1, "speed": 10}]))
+
+
+def test_sfx_mixed_and_captions_in_safe_area(media):
+    # silent clip + one boom at 1.0 s: the render must be silent before the hit and loud after it
+    p = write_edl(media, clips=[{"src": "b.mp4", "in": 0, "out": 3}], music=None, loudness_lufs=None,
+                  captions=[{"text": "PR", "start": 0, "end": 2}], caption_style={"position": "bottom"},
+                  sfx=[{"src": "boom", "at": 1.0, "volume_db": -6}])
+    out = render.render(p)["output"]
+    def peak(ss, t):
+        err = subprocess.run(["ffmpeg", "-hide_banner", "-ss", str(ss), "-t", str(t), "-i", out, "-af", "volumedetect",
+                              "-f", "null", "-"], capture_output=True, text=True).stderr
+        return float(err.split("max_volume:")[1].split("dB")[0])
+    assert peak(0, 0.8) < -60 and peak(1.0, 1.0) > -20
+    edl = render.load(p)
+    ass = media / "c.ass"
+    render.write_ass(edl, ass)
+    line = next(x for x in ass.read_text(encoding="utf-8-sig").splitlines() if x.startswith("Dialogue"))
+    assert line.split(",")[7] == str(int(640 * 0.25))  # bottom captions sit above TikTok's caption text
+    with pytest.raises(render.EDLError, match="built-in sound"):
+        render.load(write_edl(media, sfx=[{"src": "nope", "at": 1}]))
+
+
+def test_true_peak_is_a_delivery_check():
+    hot = {"audio": {"true_peak_dbtp": -0.2}}
+    assert not analyze.compare(hot, {})["ok"]
+    assert analyze.compare({"audio": {"true_peak_dbtp": -1.6}}, {})["ok"]

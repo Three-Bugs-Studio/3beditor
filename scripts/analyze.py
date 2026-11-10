@@ -118,10 +118,13 @@ def color(video):
 
 
 def loudness(video):
-    err = run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(video), "-vn", "-af", "ebur128", "-f", "null", "-"]).stderr
+    err = run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(video), "-vn", "-af", "ebur128=peak=true",
+               "-f", "null", "-"]).stderr
     i = re.findall(r"I:\s+(-?[\d.]+) LUFS", err)
     lra = re.findall(r"LRA:\s+([\d.]+) LU", err)
-    return {"integrated_lufs": float(i[-1]) if i else None, "range_lu": float(lra[-1]) if lra else None}
+    tp = re.findall(r"Peak:\s+(-?[\d.]+|-inf) dBFS", err)
+    return {"integrated_lufs": float(i[-1]) if i else None, "range_lu": float(lra[-1]) if lra else None,
+            "true_peak_dbtp": float(tp[-1]) if tp and tp[-1] != "-inf" else None}
 
 
 def contact_sheet(video, duration, path):
@@ -210,6 +213,9 @@ def compare(actual, target):
             ok = abs(a - t) <= (tol * abs(t) if rel else tol)
         checks.append({"metric": path, "target": t, "actual": a, "ok": ok,
                        **({} if tol is None else {"diff": round(a - t, 2)})})
+    tp = _get(actual, "audio.true_peak_dbtp")
+    if tp is not None:  # delivery limit, not a style: peaks above -1 dBTP clip after the app re-encodes the upload
+        checks.append({"metric": "audio.true_peak_dbtp", "target": "<= -1.0", "actual": tp, "ok": tp <= -1.0})
     return {"ok": all(c["ok"] for c in checks), "checks": checks}
 
 

@@ -56,7 +56,8 @@ Other ways in:
 - **Look:** colour grading, from natural to a film look (teal/orange, deep blacks, vignette, grain).
 - **Text:** captions in any font, including your own `.ttf`/`.otf` files. Vietnamese is checked letter by letter, so there are no broken fonts. Stroke, shadow and glow; highlighted key words; pop, fade and zoom; word-by-word and karaoke (TikTok "SubText" styles).
 - **Transitions:** 15 cinematic and TikTok transitions (whips, zoom punch, flash, glitch, fades, dips…), each chosen per cut, **only where the analysis finds a reason**.
-- **Sound:** continuous audio under the cuts, music mixing, and loudness for phones (−14 LUFS).
+- **Sound:** continuous audio under the cuts, music mixing, five free sound effects (boom, clang, whoosh, riser, glitch) used only where they mean something, and loudness for phones (−14 LUFS, peaks under −1 dBTP).
+- **Safe for the apps:** captions stay clear of the TikTok/Reels buttons and caption area.
 - **Checks:** every result is measured (pacing, colour, loudness, beat sync, frame-accurate timing) against the chosen style.
 
 Your original files are never changed. Work goes into `3beditor_work/` next to your clips.
@@ -84,6 +85,10 @@ python -m pytest -q tests
 ```
 
 `mobile/build_zip.py` packages everything as one skill ZIP for the Claude app (experimental: it needs FFmpeg in the app's sandbox).
+
+## Thanks
+
+Sound effects and several editing rules (safe areas, take picking, sound restraint) come from [ghost-editor](https://github.com/kurbaitaev/ghost-editor) (MIT). The sounds are CC0, see `sfx/CREDITS.md`.
 
 ## License
 

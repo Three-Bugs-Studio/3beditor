@@ -16,12 +16,16 @@ FILES = {  # zip path: source
 }
 FILES.update({f"3beditor/scripts/{p.name}": p for p in (ROOT / "scripts").glob("*.py")})
 FILES.update({f"3beditor/styles/{p.name}": p for p in (ROOT / "styles").glob("*.json")})
+FILES.update({f"3beditor/sfx/{p.name}": p for p in (ROOT / "sfx").iterdir()})
 
 
 def build():
     OUT.parent.mkdir(exist_ok=True)
     with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
         for arc, src in sorted(FILES.items()):
+            if src.suffix == ".wav":
+                z.write(src, arc)
+                continue
             text = src.read_text(encoding="utf-8")
             if arc.startswith("3beditor/references/"):  # desktop skills point at ../../scripts; here it's scripts/
                 text = text.replace("../../scripts/", "scripts/").replace("../../styles/", "styles/")
