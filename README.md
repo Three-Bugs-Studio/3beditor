@@ -94,6 +94,8 @@ Sound effects and several editing rules (safe areas, take picking, sound restrai
 
 Fork it, change it, send a pull request: see [CONTRIBUTING.md](CONTRIBUTING.md). Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
+Like 3beditor? [Sponsor @DongDuong2001](https://github.com/sponsors/DongDuong2001) to keep it free.
+
 ## License
 
 MIT. Free to use, change and share, as long as you keep the copyright notice.
