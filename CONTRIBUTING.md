@@ -12,7 +12,9 @@ Thanks for helping. 3beditor is made and maintained by Duong Phu Dong ([@DongDuo
    ```
 4. Open a pull request to `main` and fill in the template.
 
-Only [@DongDuong2001](https://github.com/DongDuong2001) reviews, approves and merges pull requests. Nobody can push to `main` directly.
+Only [@DongDuong2001](https://github.com/DongDuong2001) reviews, approves and merges pull requests, and is added as the reviewer automatically. Nobody else can push to `main`.
+
+A pull request can only be merged once the CI checks pass (tests on Windows and Linux, and the package build) and @DongDuong2001 has approved it. Don't change the version number: releases are made automatically when the maintainer bumps `version` in `.claude-plugin/plugin.json`.
 
 ## Rules for code
 

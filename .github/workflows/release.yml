@@ -1,0 +1,33 @@
+name: Release
+
+# Publishes a GitHub release whenever the version in plugin.json changes on main.
+on:
+  push:
+    branches: [main]
+    paths: [.claude-plugin/plugin.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read version
+        id: v
+        run: echo "tag=v$(python -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")" >> "$GITHUB_OUTPUT"
+      - name: Create the release if this version is new
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.v.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "$TAG already released"; exit 0
+          fi
+          python mobile/build_zip.py
+          gh release create "$TAG" dist/3beditor-skill.zip --target "$GITHUB_SHA" --title "3beditor $TAG" --generate-notes

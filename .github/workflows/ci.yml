@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install FFmpeg 9.0 (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          curl -sL https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n9.0-latest-linux64-gpl-9.0.tar.xz | tar -xJ
+          echo "$PWD/ffmpeg-n9.0-latest-linux64-gpl-9.0/bin" >> "$GITHUB_PATH"
+      - name: Install FFmpeg 9.0 (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n9.0-latest-win64-gpl-9.0.zip -OutFile ffmpeg.zip
+          Expand-Archive ffmpeg.zip -DestinationPath .
+          "$PWD\ffmpeg-n9.0-latest-win64-gpl-9.0\bin" | Out-File -Append -Encoding utf8 $env:GITHUB_PATH
+      - run: pip install pytest
+      - run: python scripts/doctor.py
+      - run: python -m pytest -q tests
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check plugin and style files are valid JSON
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          files = [*pathlib.Path(".claude-plugin").glob("*.json"), *pathlib.Path("styles").glob("*.json")]
+          for f in files:
+              json.loads(f.read_text(encoding="utf-8"))
+          v = json.loads(pathlib.Path(".claude-plugin/plugin.json").read_text())["version"]
+          print(f"{len(files)} JSON files ok, plugin version {v}")
+          PY
+      - run: python mobile/build_zip.py
