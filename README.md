@@ -88,7 +88,7 @@ python -m pytest -q tests
 
 ## Thanks
 
-Sound effects and several editing rules (safe areas, take picking, sound restraint) come from [ghost-editor](https://github.com/kurbaitaev/ghost-editor) (MIT). The sounds are CC0, see `sfx/CREDITS.md`.
+Sound effects and several editing rules (safe areas, take picking, sound restraint) come from [ghost-editor](https://github.com/kurbaitaev/ghost-editor) (MIT). The sounds are CC0, see `sfx/CREDITS.md`. The shot-by-shot reference breakdown (story line, hook, how it was filmed) follows ideas from [rea-video](https://github.com/JuneYaooo/rea-video) (Apache-2.0).
 
 ## Contributing
 

@@ -42,6 +42,9 @@ Scripts are in `../../scripts/` relative to this skill's base directory. Run `py
    | end card or title in the reference | add a `color:` card clip, with its caption set to `"position": "center"` |
    | `visual_notes.framing` punch-ins | `zoom: 1.1–1.25` on some clips |
    | `audio.integrated_lufs` | `loudness_lufs` (default −14) |
+   | `visual_notes.story` + `shots[].role` | the clip order: follow the same line (hook → proof → payoff) with the user's own moments. A reference that opens on the payoff opens on the user's best rep |
+   | `visual_notes.shots[].overlay_text` | text captions at the same points, rewritten for the user's story. Never copy the reference's words |
+   | `visual_notes.sfx` | `sfx` at the matching moment in the user's video, using the closest built-in sound. The sound rules in `craft.md` still apply |
 
    Respect a length the user asked for, even if that means fewer shots.
    Gym footage: cut each set down to its best 1-3 reps (the contact sheet and the clip's own cuts show where they are), and end on the heaviest rep or PR.

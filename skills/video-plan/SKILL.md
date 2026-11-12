@@ -19,6 +19,8 @@ Write `plan.md`:
 - **Contrast through the camera:** when the story has two sides (before/after, two life paths, struggle/victory), give each side its own angle, light and colour, so the viewer feels the difference without words.
 - **Who checks what:** the AI will produce the images and clips, and the customer (with you) checks every one against this plan.
 
+**From a reference video:** if the customer has one, run `video-style` first. Start the beats table from its `visual_notes.shots` (same roles and timing, the customer's own content) and the shoot plan from `visual_notes.filming`.
+
 Show the beats table and wait for approval. Change only the rows the customer names.
 
 ## Step 2. Reference asset set (the "visual guide")
