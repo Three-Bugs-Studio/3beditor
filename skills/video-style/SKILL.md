@@ -1,9 +1,11 @@
 ---
 name: video-style
-description: "Watch a reference video (a file, or a TikTok/YouTube/Facebook link) and analyze its editing style (cut pacing, colour, captions, transitions, music beat, loudness) into a reusable style.json. Use when the user shares a reference video or pastes a video link and says 'analyze this style', 'what style is this', 'make mine look like this', or wants to save a style for later."
+description: "Watch a reference video (a file, or a TikTok/YouTube/Facebook link) and analyze its editing style (cut pacing, colour, captions, transitions, music beat, loudness) into a reusable style.json. Use when the user shares a reference video or pastes a video link and says 'analyze this style', 'what style is this', 'make mine look like this', or wants to save a style for later. Vietnamese requests too: 'phân tích phong cách video này', 'video này dựng kiểu gì', 'làm giống video này'."
 ---
 
 # Video style
+
+**Language:** speak Vietnamese by default: plain, friendly tiếng Việt with no editing jargon. Switch to English only when the customer writes in English. Files the customer keeps (plans, reports) follow the same rule.
 
 Turns a reference video into `style.json`: measured numbers plus your notes from looking at its frames. `video-edit` uses that file as the target.
 

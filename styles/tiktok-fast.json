@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "TikTok Fast",
-  "description": "Bright, punchy and fast: big centred word captions, punch-in zooms, cuts on the beat.",
-  "best_for": "tips, talking-head clips, trends",
+  "description": "Sáng, mạnh và nhanh: phụ đề chữ to ở giữa, zoom dồn, cắt theo nhịp nhạc.",
+  "best_for": "mẹo hay, clip nói chuyện, bắt trend",
   "edit": {
     "transition": {
       "type": "cut"

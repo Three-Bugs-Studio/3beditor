@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "Vlog",
-  "description": "Warm, friendly and natural with clean boxed subtitles at the bottom.",
-  "best_for": "day-in-the-life, gym routines with talking",
+  "description": "Ấm áp, gần gũi, tự nhiên, phụ đề có nền gọn gàng ở dưới.",
+  "best_for": "một ngày của tôi, lịch tập có nói chuyện",
   "edit": {
     "transition": {
       "type": "cut"

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "Gym Cinematic",
-  "description": "Moody film look: teal shadows, warm skin, deep blacks, slow motion on the key rep, fades.",
-  "best_for": "a single lift or set, transformation teasers, coach promos",
+  "description": "Màu phim trầm: bóng xanh ngọc, da ấm, đen sâu, quay chậm ở rep quan trọng, chuyển cảnh mờ.",
+  "best_for": "một bài tập hoặc một set, teaser thay đổi body, quảng bá huấn luyện viên",
   "edit": {
     "transition": {
       "type": "cut"

@@ -5,13 +5,13 @@
     "url": "https://github.com/Three-Bugs-Studio"
   },
   "metadata": {
-    "description": "Free video tools for Claude Code by Three Bugs Studio"
+    "description": "Công cụ dựng video miễn phí cho Claude Code của Three Bugs Studio"
   },
   "plugins": [
     {
       "name": "3beditor",
       "source": "./",
-      "description": "Edit your clips into a finished short video by talking to Claude: styles, storyboard, clean cuts on the beat, Vietnamese-safe captions.",
+      "description": "Dựng video ngắn hoàn chỉnh từ clip của bạn bằng cách nói chuyện với Claude: phong cách, phân cảnh, cắt theo nhịp nhạc, phụ đề tiếng Việt chuẩn dấu.",
       "category": "productivity"
     }
   ]

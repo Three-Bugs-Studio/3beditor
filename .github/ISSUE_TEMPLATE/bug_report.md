@@ -1,16 +1,16 @@
 ---
-name: Bug report
-about: Something doesn't work
+name: Báo lỗi (Bug report)
+about: Có gì đó không chạy đúng / Something doesn't work
 labels: bug
 ---
 
-**What happened?**
+**Chuyện gì đã xảy ra? (What happened?)**
 
-**What did you expect?**
+**Bạn mong đợi điều gì? (What did you expect?)**
 
-**Steps or the prompt you used**
+**Các bước hoặc câu lệnh bạn đã gõ (Steps or the prompt you used)**
 
-**Your setup**
-- OS (Windows / macOS / Linux):
-- 3beditor version (`/plugin` shows it):
-- Output of `python scripts/doctor.py`:
+**Máy của bạn (Your setup)**
+- Hệ điều hành (Windows / macOS / Linux):
+- Phiên bản 3beditor (xem trong `/plugin`):
+- Kết quả của `python scripts/doctor.py`:

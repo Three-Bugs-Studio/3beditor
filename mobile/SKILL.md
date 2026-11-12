@@ -1,11 +1,11 @@
 ---
 name: 3beditor
-description: "Make a finished short video from the customer's clips, right in the Claude app (also on a phone): pick a style, approve a storyboard, get an MP4 to post on TikTok, Reels or Shorts. Use for 'edit my gym video', 'make a reel from these clips', 'turn this into a TikTok', or any video upload with an editing request."
+description: "Make a finished short video from the customer's clips, right in the Claude app (also on a phone): pick a style, approve a storyboard, get an MP4 to post on TikTok, Reels or Shorts. Use for 'edit my gym video', 'make a reel from these clips', 'turn this into a TikTok', or any video upload with an editing request. Vietnamese requests too: 'dựng video gym', 'làm reel từ mấy clip này', 'làm video TikTok'."
 ---
 
 # 3beditor (Claude app and phone)
 
-The customer is probably on a **phone**: keep every message short, ask one thing at a time, offer numbered choices, and show pictures (boards) rather than long text. Speak their language (Vietnamese or English).
+The customer is probably on a **phone**: keep every message short, ask one thing at a time, offer numbered choices, and show pictures (boards) rather than long text. Speak Vietnamese by default (plain, friendly tiếng Việt, no jargon), and English only when the customer writes in English.
 
 Everything this skill needs is inside its folder: `scripts/`, `styles/` and `references/`. Run the scripts with `python3 <this folder>/scripts/...`. Uploaded files are in `/mnt/user-data/uploads/`. Put every result the customer should download in `/mnt/user-data/outputs/`. Work in `/tmp/3be/`.
 

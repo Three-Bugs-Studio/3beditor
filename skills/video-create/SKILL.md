@@ -1,9 +1,11 @@
 ---
 name: video-create
-description: "Create a short video from scratch, with no footage or only a few photos: script, text cards, images, captions and music, rendered to 9:16, 16:9 or 1:1. Use for 'make a video about X', 'turn these photos into a reel', 'make a promo/announcement video', 'slideshow with music'."
+description: "Create a short video from scratch, with no footage or only a few photos: script, text cards, images, captions and music, rendered to 9:16, 16:9 or 1:1. Use for 'make a video about X', 'turn these photos into a reel', 'make a promo/announcement video', 'slideshow with music'. Vietnamese requests too: 'làm video về X', 'làm reel từ ảnh', 'làm video quảng cáo', 'slideshow có nhạc'."
 ---
 
 # Video create
+
+**Language:** speak Vietnamese by default: plain, friendly tiếng Việt with no editing jargon. Switch to English only when the customer writes in English. Files the customer keeps (plans, reports) follow the same rule.
 
 Brief → script → shot list → `edl.json` → preview → render. Uses the same scripts as `video-edit` (`../../scripts/`, relative to this skill's base directory).
 

@@ -1,9 +1,9 @@
 ---
-name: Idea
-about: Suggest a style, effect or feature
+name: Góp ý (Idea)
+about: Đề xuất phong cách, hiệu ứng hoặc tính năng / Suggest a style, effect or feature
 labels: enhancement
 ---
 
-**What would you like 3beditor to do?**
+**Bạn muốn 3beditor làm được gì? (What would you like 3beditor to do?)**
 
-**Why? (a reference video link helps)**
+**Vì sao? Gửi kèm link video mẫu càng tốt (Why? A reference video link helps)**

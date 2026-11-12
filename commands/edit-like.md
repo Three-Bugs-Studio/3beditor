@@ -1,6 +1,6 @@
 ---
-description: Edit your footage to match a reference video's style (or a preset like tiktok-fast)
-argument-hint: <reference video, link or preset name> <footage file or folder> [notes, e.g. "30 seconds, use song.mp3"]
+description: Dựng clip của bạn giống phong cách một video mẫu (hoặc phong cách có sẵn như tiktok-fast)
+argument-hint: <video mẫu, link hoặc tên phong cách> <file hoặc thư mục clip> [ghi chú, vd: "30 giây, dùng nhạc song.mp3"]
 ---
 
 Use the `video-edit` skill.

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "Gym Montage",
-  "description": "Raw, gritty, almost black-and-white hype montage with a fixed title on top.",
-  "best_for": "lifting PRs, gym highlight reels, crowd hype",
+  "description": "Montage máu lửa, thô và gắt, gần như đen trắng, có tiêu đề cố định phía trên.",
+  "best_for": "phá kỷ lục (PR), tổng hợp buổi tập, khuấy động tinh thần",
   "edit": {
     "transition": {
       "type": "cut"

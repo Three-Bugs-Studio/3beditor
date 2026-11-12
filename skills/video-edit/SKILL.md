@@ -1,9 +1,11 @@
 ---
 name: video-edit
-description: "Edit the user's footage into a finished video that matches a style, either from a reference video or a preset (gym-montage, gym-cinematic, tiktok-fast, vlog, cinematic, podcast-clip). Covers cutting, reframing to 9:16/16:9/1:1, captions from speech, colour, music, loudness, then a check of the result against the style. Use for 'edit my clips like this video', 'make a reel from these', 'cut this into a TikTok', 'add captions and music'."
+description: "Edit the user's footage into a finished video that matches a style, either from a reference video or a preset (gym-montage, gym-cinematic, tiktok-fast, vlog, cinematic, podcast-clip). Covers cutting, reframing to 9:16/16:9/1:1, captions from speech, colour, music, loudness, then a check of the result against the style. Use for 'edit my clips like this video', 'make a reel from these', 'cut this into a TikTok', 'add captions and music'. Vietnamese requests too: 'dựng clip giống video này', 'cắt thành video TikTok', 'thêm phụ đề và nhạc'."
 ---
 
 # Video edit
+
+**Language:** speak Vietnamese by default: plain, friendly tiếng Việt with no editing jargon. Switch to English only when the customer writes in English. Files the customer keeps (plans, reports) follow the same rule.
 
 Footage + style → `edl.json` (the edit plan) → preview → render → measure → fix.
 

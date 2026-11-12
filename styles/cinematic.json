@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "Cinematic",
-  "description": "Slow, wide and filmic with soft fades between scenes and minimal text.",
-  "best_for": "travel, gym tours, brand stories",
+  "description": "Chậm, rộng và đậm chất điện ảnh, chuyển cảnh mờ nhẹ, rất ít chữ.",
+  "best_for": "du lịch, giới thiệu phòng gym, câu chuyện thương hiệu",
   "edit": {
     "transition": {
       "type": "fade",

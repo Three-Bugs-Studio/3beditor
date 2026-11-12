@@ -1,9 +1,11 @@
 ---
 name: video-plan
-description: "Plan a video before filming or generating it: story beats, a shot list with camera angles, and a reference asset set (characters, outfits, locations from 3 angles) with prompts for AI image/video tools (Nano Banana, Seedream/Seedance, GPT image, Topview), or a shoot plan for filming on a phone. Use when the customer has no footage yet, says 'plan my video', 'what should I film', 'help me make an AI video', 'storyboard my idea', or before 'generate video' in any AI tool."
+description: "Plan a video before filming or generating it: story beats, a shot list with camera angles, and a reference asset set (characters, outfits, locations from 3 angles) with prompts for AI image/video tools (Nano Banana, Seedream/Seedance, GPT image, Topview), or a shoot plan for filming on a phone. Use when the customer has no footage yet, says 'plan my video', 'what should I film', 'help me make an AI video', 'storyboard my idea', or before 'generate video' in any AI tool. Vietnamese requests too: 'lên kế hoạch video', 'nên quay gì', 'làm video AI', 'lên kịch bản phân cảnh'."
 ---
 
 # Video plan
+
+**Language:** speak Vietnamese by default: plain, friendly tiếng Việt with no editing jargon. Switch to English only when the customer writes in English. Files the customer keeps (plans, reports) follow the same rule.
 
 **The idea:** consistent characters, locations and camera angles come from preparation, not from the AI model or the camera. Don't press "generate" (or record) until these 3 steps are approved. A mistake caught here costs a minute; caught after generating or filming, it costs a redo.
 

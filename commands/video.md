@@ -1,6 +1,6 @@
 ---
-description: "Make a video from your clips. Pick a style (or bring a reference video or link), approve a storyboard, get the finished video"
-argument-hint: "[your clips or folder] [style name or reference link, optional] [notes]"
+description: "Dựng video từ clip của bạn: chọn phong cách (hoặc gửi video/link mẫu), duyệt phân cảnh, nhận video hoàn chỉnh"
+argument-hint: "[clip hoặc thư mục] [tên phong cách hoặc link mẫu, không bắt buộc] [ghi chú]"
 ---
 
 Use the `video-studio` skill and run its full flow: intake → style (preset gallery or freestyle) → plan check → storyboard check → build → delivery.

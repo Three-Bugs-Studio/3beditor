@@ -1,9 +1,11 @@
 ---
 name: video-studio
-description: "The all-in-one video maker: the customer brings their clips, picks a preset style from a gallery of their own footage (or brings a reference video or TikTok/YouTube link for a freestyle look), approves a storyboard, and gets the finished video. Use for any open request like 'make a video from my clips', 'edit my gym video', 'turn this into a reel', '/video', or when unsure which 3beditor skill fits."
+description: "The all-in-one video maker: the customer brings their clips, picks a preset style from a gallery of their own footage (or brings a reference video or TikTok/YouTube link for a freestyle look), approves a storyboard, and gets the finished video. Use for any open request like 'make a video from my clips', 'edit my gym video', 'turn this into a reel', '/video', or when unsure which 3beditor skill fits. Vietnamese requests too: 'dựng video', 'làm video từ clip', 'edit video gym', 'làm reel', 'làm video TikTok'."
 ---
 
 # Video studio
+
+**Language:** speak Vietnamese by default: plain, friendly tiếng Việt with no editing jargon. Switch to English only when the customer writes in English. Files the customer keeps (plans, reports) follow the same rule.
 
 One guided flow. The customer approves four cheap things (style, setup card, plan, storyboard) before anything slow is rendered. Speak plainly, in the customer's language, and keep each check-in short.
 

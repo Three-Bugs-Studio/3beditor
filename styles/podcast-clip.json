@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "name": "Podcast Clip",
-  "description": "Clear speaker framing with bold yellow word captions in the middle.",
-  "best_for": "coach talks, Q&A, podcast moments",
+  "description": "Khung hình người nói rõ ràng, phụ đề chữ vàng đậm từng chữ ở giữa màn hình.",
+  "best_for": "huấn luyện viên chia sẻ, hỏi đáp, đoạn podcast",
   "edit": {
     "transition": {
       "type": "cut"
