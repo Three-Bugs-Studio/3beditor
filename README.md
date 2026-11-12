@@ -4,6 +4,8 @@ A free Claude Code plugin that turns your clips into a finished short video for 
 
 Made with gym and training videos in mind, but it works for any footage. It speaks English and Vietnamese (captions are checked for every Vietnamese letter).
 
+**New here? Read the easy guide: [Playbook](PLAYBOOK.md) · [Hướng dẫn tiếng Việt](PLAYBOOK_vi.md)**
+
 ## Install (2 minutes)
 
 1. **FFmpeg 7+** and **Python 3.10+**:
