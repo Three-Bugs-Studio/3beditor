@@ -9,7 +9,7 @@ description: "Plan a video before filming or generating it: story beats, a shot 
 
 **The idea:** consistent characters, locations and camera angles come from preparation, not from the AI model or the camera. Don't press "generate" (or record) until these 3 steps are approved. A mistake caught here costs a minute; caught after generating or filming, it costs a redo.
 
-Work in `3beditor_work/plan/` (or `plan/` in the current folder). Write everything there as files the customer keeps. Speak plainly in the customer's language.
+Show the plan in the chat. Keep the files (`plan.md`, `assets.md`, `shots.json`) in `<temp>/3beditor/plan/` (`<temp>` from `python -c "import tempfile; print(tempfile.gettempdir())"`), and save a copy to the customer's folder only if they ask. Speak plainly in the customer's language.
 
 ## Step 1. Story and storyboard (the most important step, don't rush it)
 

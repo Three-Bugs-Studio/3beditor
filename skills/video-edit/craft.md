@@ -21,7 +21,7 @@ The basics every editor learns in Premiere Pro and After Effects (QuạHD's begi
 
 ## Rules of thumb these lessons share
 
-1. **Organise first.** Keep one folder per project with all its media in it (we use `3beditor_work/`), so nothing goes missing.
+1. **Organise first.** Keep one working folder per project (we use `<temp>/3beditor/<project>`, outside the customer's folders), so nothing goes missing.
 2. **Learn by turning one knob at a time.** When a look is off, change one `color` value, re-preview and compare. Don't change five at once.
 3. **Correction before creativity.** Get exposure and white balance right (brightness, warmth), then add the stylised look.
 4. **Sound carries the cut.** A cut feels smooth when the audio keeps flowing under it and the cut lands on a beat.

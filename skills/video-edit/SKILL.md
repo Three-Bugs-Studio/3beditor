@@ -13,7 +13,7 @@ Scripts are in `../../scripts/` relative to this skill's base directory. Run `py
 
 ## Rules
 
-- Never modify or overwrite the user's files. Put everything in a `3beditor_work/` folder next to their footage.
+- Keep working files out of the customer's folders: use `<temp>/3beditor/<project>` as `<work>`, where `<temp>` is `python -c "import tempfile; print(tempfile.gettempdir())"`. The only file that lands in their folder is the finished video, saved next to their clips as `<name>_3beditor.mp4` (or where they ask), never overwriting a file. Never change their files.
 - Use absolute paths in `edl.json`.
 - Get the user's OK on the preview before the full render.
 - At most 2 fix rounds after the full render, then report what still differs.
@@ -59,7 +59,7 @@ Scripts are in `../../scripts/` relative to this skill's base directory. Run `py
    Transitions on beat-locked cuts: a transition overlaps its two clips, so keep its **middle** on the beat (`fx_plan.py --apply` does this). Extend the outgoing clip's `out` by half the transition (× its `speed`) and start the incoming clip's `in` half a transition earlier (× its `speed`). The timeline then keeps its length, and `analyze.py --cuts-from` reports the mid-transition times.
    Music: if the reference uses a trending song, leave `music` out and tell the user to add that sound in the TikTok, Reels or Shorts app (it stays licensed there). Keep their own audio, or set `mute: true` on clips.
 5. **Preview.** Run `python <scripts>/render.py <work>/edl.json --preview`, then `python <scripts>/analyze.py <work>/out_preview.mp4 --out <work>/preview`. Show the user the preview contact sheet and a short plan (shots, length, captions, music) and ask for their OK or changes.
-6. **Render and check.** Run `python <scripts>/render.py <work>/edl.json`, then `python <scripts>/analyze.py <work>/out.mp4 --out <work>/final --target <style.json> --cuts-from <work>/edl.json`. Always pass `--cuts-from`: fades between similar shots can't be detected reliably, but the EDL knows the exact cuts. Exit code 2 means a mismatch: read `match.checks` and adjust:
+6. **Render and check.** Run `python <scripts>/render.py <work>/edl.json` (its `output` is the final path next to their clips), then `python <scripts>/analyze.py <work>/out.mp4 --out <work>/final --target <style.json> --cuts-from <work>/edl.json`. Always pass `--cuts-from`: fades between similar shots can't be detected reliably, but the EDL knows the exact cuts. Exit code 2 means a mismatch: read `match.checks` and adjust:
    - `pacing.*` too slow: shorten or split clips. Too fast: lengthen them.
    - `color.*` off: move the matching `color` value by the difference. **Exception:** when the reference and the footage are different kinds of content (a bright graphics or UI ad vs. camera or game footage, or day vs. night), don't chase `brightness`. Forcing it washes out the footage. Report it as an intended difference instead.
    - `audio.integrated_lufs` off: check that `loudness_lufs` is set and the music isn't clipping.

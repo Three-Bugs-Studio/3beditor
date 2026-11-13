@@ -6,6 +6,8 @@ Plugin miễn phí cho Claude Code, biến các clip của bạn thành video ng
 
 Làm riêng cho video gym và tập luyện, nhưng dùng được với mọi loại clip. Nói được tiếng Việt và tiếng Anh, phụ đề được kiểm tra từng chữ có dấu nên không bao giờ bị lỗi font.
 
+**Dùng trên điện thoại?** Tải `3beditor-skill.zip` ở [Releases](https://github.com/Three-Bugs-Studio/3beditor/releases/latest), thêm vào claude.ai (Settings → Customize → Skills → Upload skill), rồi gửi clip trong app Claude. Xem [hướng dẫn](PLAYBOOK_vi.md#dùng-trên-điện-thoại-không-cần-máy-tính).
+
 **Mới dùng lần đầu? Đọc hướng dẫn dễ hiểu: [Hướng dẫn tiếng Việt](PLAYBOOK_vi.md) · [Playbook (English)](PLAYBOOK.md)**
 
 ## Cài đặt (2 phút)
@@ -64,7 +66,7 @@ Các cách khác:
 - **An toàn trên app:** chữ luôn tránh các nút và vùng chú thích của TikTok/Reels.
 - **Kiểm tra:** mọi kết quả đều được đo (nhịp cắt, màu, âm lượng, khớp nhịp nhạc, thời gian chính xác từng khung hình) so với phong cách đã chọn.
 
-Clip gốc của bạn không bao giờ bị thay đổi. Mọi thứ được lưu vào thư mục `3beditor_work/` cạnh clip của bạn.
+Clip gốc của bạn không bao giờ bị thay đổi, và không có thư mục nào được tạo thêm: chỉ có video hoàn chỉnh `<tên>_3beditor.mp4` được lưu cạnh clip của bạn.
 
 **Về nhạc:** khi đăng công khai, hãy xuất video không có nhạc rồi chọn nhạc thịnh hành ngay trong TikTok, Reels hoặc Shorts, như vậy nhạc có bản quyền sẵn. Chỉ dùng file nhạc riêng nếu bạn có quyền dùng bài đó.
 

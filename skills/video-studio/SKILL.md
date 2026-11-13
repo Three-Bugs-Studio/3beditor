@@ -23,7 +23,7 @@ Ask only what's missing, in one message:
 - music: their own file, or "add a sound in the app later" (recommended for public posts, since it stays licensed)
 - any text: title, name, call to action, and the **font** if they have one (a .ttf/.otf file is fine). For Vietnamese text, check it with `python <scripts>/fonts.py check FONT "their text"`. If letters are missing, suggest the font's "Việt hóa" version or a font from `fonts.py list --vietnamese`
 
-Put all work in `3beditor_work/` next to their clips. Never change their files.
+Keep working files out of the customer's folders: use `<temp>/3beditor/<project>` as `<work>`, where `<temp>` is `python -c "import tempfile; print(tempfile.gettempdir())"`. The only file that lands in their folder is the finished video, saved next to their clips as `<name>_3beditor.mp4` (or where they ask), never overwriting a file. Never change their files.
 
 ## 1. Style: preset or freestyle
 

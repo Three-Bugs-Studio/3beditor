@@ -6,7 +6,19 @@ Hướng dẫn đơn giản để làm video đầu tiên. Không cần biết d
 
 ---
 
-## 1. Cài đặt (chỉ một lần, khoảng 5 phút)
+## Dùng trên điện thoại (không cần máy tính)
+
+Không cần cài gì trên điện thoại, cũng không tạo thư mục nào. Mọi việc chạy trong app Claude, bạn chỉ tải về video hoàn chỉnh.
+
+1. **Thêm skill (một lần, trên máy tính hoặc trình duyệt):** tải file `3beditor-skill.zip` ở trang [Releases](https://github.com/Three-Bugs-Studio/3beditor/releases/latest). Mở [claude.ai](https://claude.ai) → **Settings** → **Customize** → **Skills** → **+ Add** → **Upload skill**, rồi chọn file vừa tải.
+2. **Trên điện thoại:** mở app Claude, bấm **+** để gửi clip, rồi nhắn `dựng video gym từ mấy clip này`.
+3. Chọn phong cách bằng một con số, duyệt phân cảnh, rồi tải video về.
+
+Lưu ý: bản điện thoại còn đang thử nghiệm. Clip nên ngắn (dưới khoảng 1 phút mỗi clip), và app không xem được link TikTok, hãy gửi file video.
+
+---
+
+## 1. Cài trên máy tính (chỉ một lần, khoảng 5 phút)
 
 Bạn cần có **Claude Code** ([tải tại đây](https://claude.com/claude-code)) trên máy tính.
 
@@ -44,7 +56,7 @@ Khởi động lại Claude Code.
 3. Trả lời vài câu hỏi của Claude: đăng ở đâu (TikTok, Reels, YouTube), dài bao lâu, có chữ tiêu đề không.
 4. **Chọn phong cách.** Claude cho xem clip của chính bạn trong từng phong cách, có đánh số. Trả lời bằng một con số.
 5. **Duyệt bảng phân cảnh.** Mỗi cảnh là một hình. Trả lời `OK`, hoặc số của cảnh muốn sửa.
-6. Đợi một hai phút. Video được lưu trong thư mục `3beditor_work` ngay cạnh clip của bạn.
+6. Đợi một hai phút. Video được lưu ngay cạnh clip của bạn với tên `<tên>_3beditor.mp4`. Không tạo thêm thư mục nào.
 
 Clip gốc của bạn không bao giờ bị thay đổi.
 

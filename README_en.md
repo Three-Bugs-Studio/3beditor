@@ -64,7 +64,7 @@ Other ways in:
 - **Safe for the apps:** captions stay clear of the TikTok/Reels buttons and caption area.
 - **Checks:** every result is measured (pacing, colour, loudness, beat sync, frame-accurate timing) against the chosen style.
 
-Your original files are never changed. Work goes into `3beditor_work/` next to your clips.
+Your original files are never changed, and no extra folders are made: only the finished `<name>_3beditor.mp4` is saved next to your clips.
 
 **About music:** for public posts, export without music and add a trending sound inside TikTok, Reels or Shorts, so it stays licensed. Only use a song file you have the rights to.
 

@@ -6,7 +6,19 @@ A simple guide to making your first video. No editing experience needed: you tal
 
 ---
 
-## 1. Set it up (one time, about 5 minutes)
+## On your phone (no computer needed)
+
+Nothing is installed on the phone and no folders are made. Everything runs inside the Claude app, and you only download the finished video.
+
+1. **Add the skill (once, on a computer or in a browser):** download `3beditor-skill.zip` from the [Releases](https://github.com/Three-Bugs-Studio/3beditor/releases/latest) page. Open [claude.ai](https://claude.ai) → **Settings** → **Customize** → **Skills** → **+ Add** → **Upload skill**, and pick the file.
+2. **On your phone:** open the Claude app, tap **+** to send your clips, and type `edit my gym video from these clips`.
+3. Pick a style by number, approve the storyboard, and download the video.
+
+Note: the phone version is still experimental. Keep clips short (under about 1 minute each). The app can't watch TikTok links, so send the video file instead.
+
+---
+
+## 1. Set it up on a computer (one time, about 5 minutes)
 
 You need **Claude Code** ([get it here](https://claude.com/claude-code)) on a computer.
 
@@ -44,7 +56,7 @@ Restart Claude Code.
 3. Answer Claude's few questions: where you'll post it (TikTok, Reels, YouTube), how long, any title text.
 4. **Pick a look.** Claude shows your own clip in every style, numbered. Reply with a number.
 5. **Check the storyboard.** You see one picture per shot. Reply `OK`, or a number to change that shot.
-6. Wait a minute or two. Your video is saved in a `3beditor_work` folder next to your clips.
+6. Wait a minute or two. Your video is saved next to your clips as `<name>_3beditor.mp4`. No extra folders are made.
 
 Your original clips are never changed.
 
