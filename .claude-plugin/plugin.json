@@ -1,6 +1,6 @@
 {
   "name": "3beditor",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Dựng video TikTok/Reels/Shorts hoàn chỉnh từ clip của bạn chỉ bằng cách nói chuyện với Claude: chọn phong cách hoặc gửi video mẫu, duyệt phân cảnh, nhận file MP4. Cắt theo nhịp nhạc, hiệu ứng có chủ đích, phụ đề tiếng Việt chuẩn dấu.",
   "author": {
     "name": "Three Bugs Studio",

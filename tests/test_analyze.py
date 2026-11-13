@@ -55,3 +55,16 @@ def test_animated_slide_transition_detected(tmp_path):
                     "-c:v", "libx264", str(clip)], check=True)
     cuts, kinds = analyze.scene_cuts(clip, 0.3)
     assert len(cuts) == 1 and 1.4 <= cuts[0] <= 2.2, cuts
+
+
+def test_music_file_without_video(tmp_path):
+    # an MP3 has no picture: analyze.py must still give its length and loudness instead of stopping
+    song = tmp_path / "song.mp3"
+    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "sine=f=220:d=4",
+                    str(song)], check=True)
+    s = analyze.analyze(song, tmp_path / "out")
+    assert s["format"]["has_audio"] and s["format"]["width"] is None
+    assert abs(s["format"]["duration_s"] - 4) < 0.1
+    assert s["audio"]["integrated_lufs"] is not None
+    assert s["pacing"] is None and s["contact_sheet"] is None
+    assert (tmp_path / "out" / "style.json").is_file()

@@ -505,6 +505,37 @@ def build(edl, preview=False):
     return cmd, total
 
 
+def measure_loudness(path):
+    """Integrated loudness (LUFS) and true peak (dBTP) of a rendered file."""
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn", "-af", "ebur128=peak=true",
+                          "-f", "null", "-"], capture_output=True, text=True, encoding="utf-8", errors="replace").stderr
+    i = re.findall(r"I:\s+(-?[\d.]+) LUFS", err)
+    tp = re.findall(r"Peak:\s+(-?[\d.]+|-inf) dBFS", err)
+    return (float(i[-1]) if i else None), (float(tp[-1]) if tp and tp[-1] != "-inf" else None)
+
+
+def fix_loudness(out, target, peak=-1.5):
+    """Second pass: one-pass loudnorm can miss by 1-2 LU on dense, loud music. Measure the result and correct
+    the gain, re-encoding only the audio. Raising the level never pushes the peak above `peak`. Returns the dB applied."""
+    lufs, tp = measure_loudness(out)
+    if lufs is None or lufs < -60:  # silent: nothing to correct
+        return 0.0
+    gain = target - lufs
+    if gain > 0 and tp is not None:
+        gain = min(gain, peak - tp)
+    if abs(gain) < 0.3:
+        return 0.0
+    tmp = out.with_name(out.stem + ".loudfix" + out.suffix)
+    p = subprocess.run(["ffmpeg", "-hide_banner", "-y", "-i", str(out), "-map", "0", "-c:v", "copy",
+                        "-af", f"volume={gain:.2f}dB", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
+                        str(tmp)], capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if p.returncode != 0:
+        tmp.unlink(missing_ok=True)
+        raise RuntimeError(f"ffmpeg loudness fix failed:\n{p.stderr[-2000:]}")
+    tmp.replace(out)
+    return round(gain, 2)
+
+
 def render(edl_path, preview=False, dry_run=False):
     edl = load(edl_path)
     out = edl["out"]
@@ -524,7 +555,10 @@ def render(edl_path, preview=False, dry_run=False):
         p = subprocess.run(cmd, cwd=work, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if p.returncode != 0:
             raise RuntimeError(f"ffmpeg failed:\n{p.stderr[-3000:]}")
-    return {"output": str(out), "duration_s": round(total, 3), "preview": preview}
+    result = {"output": str(out), "duration_s": round(total, 3), "preview": preview}
+    if edl.get("loudness_lufs") is not None:
+        result["loudness_fix_db"] = fix_loudness(out, float(edl["loudness_lufs"]))
+    return result
 
 
 if __name__ == "__main__":

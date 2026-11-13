@@ -168,3 +168,16 @@ def test_true_peak_is_a_delivery_check():
     hot = {"audio": {"true_peak_dbtp": -0.2}}
     assert not analyze.compare(hot, {})["ok"]
     assert analyze.compare({"audio": {"true_peak_dbtp": -1.6}}, {})["ok"]
+
+
+def test_loudness_second_pass_hits_target(tmp_path):
+    # a clip far louder than the target: the correction brings it within 0.5 LU and keeps the peak under -1
+    clip = tmp_path / "loud.mp4"
+    ff("-f", "lavfi", "-i", "color=c=gray:s=160x90:d=4:r=25", "-f", "lavfi", "-i", "aevalsrc=0.9*sin(2*PI*1000*t):d=4",
+       "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", "-shortest", str(clip))
+    before, _ = render.measure_loudness(clip)
+    assert before > -10
+    gain = render.fix_loudness(clip, -14)
+    after, peak = render.measure_loudness(clip)
+    assert gain < 0 and abs(after - -14) <= 0.5 and peak <= -1
+    assert render.fix_loudness(clip, -14) == 0.0  # already on target: file left alone

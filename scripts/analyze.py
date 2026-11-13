@@ -24,9 +24,15 @@ def run(cmd):
 
 def probe(video):
     data = json.loads(run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(video)]).stdout)
-    v = next((s for s in data["streams"] if s["codec_type"] == "video"), None)
+    v = next((s for s in data["streams"] if s["codec_type"] == "video"
+              and not s.get("disposition", {}).get("attached_pic")), None)  # MP3 cover art is not a video
+    has_audio = any(s["codec_type"] == "audio" for s in data["streams"])
     if v is None:
-        sys.exit(f"no video stream in {video}")
+        if not has_audio:
+            sys.exit(f"no video or audio stream in {video}")
+        # a music file: only its length, loudness and beats are measured
+        return {"duration_s": round(float(data["format"]["duration"]), 3), "width": None, "height": None,
+                "aspect": None, "fps": None, "has_audio": True}
     num, den = (v.get("avg_frame_rate") or v.get("r_frame_rate") or "0/1").split("/")
     w, h = int(v["width"]), int(v["height"])
     return {
@@ -137,6 +143,14 @@ def contact_sheet(video, duration, path):
     return times
 
 
+def _has_librosa():
+    try:
+        import librosa  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
 def beats(video, cuts, tmp_dir):
     """Music tempo and how many cuts land on a beat. None if librosa is not installed."""
     try:
@@ -236,6 +250,14 @@ def analyze(video, out_dir, threshold=0.3, with_transcript=False, model_size="ba
         sys.exit(f"not a file: {video}")
     out_dir.mkdir(parents=True, exist_ok=True)
     info = probe(video)
+    if info["width"] is None:  # music file
+        cuts = edl_cuts(cuts_from)[0] if cuts_from else []
+        style = {"schema": SCHEMA, "source": video.name, "format": info, "pacing": None, "color": None,
+                 "audio": loudness(video), "music": beats(video, cuts, out_dir), "speech": None,
+                 "contact_sheet": None, "visual_notes": None,
+                 "not_measured": [] if _has_librosa() else ["music beats (pip install librosa)"]}
+        (out_dir / "style.json").write_text(json.dumps(style, indent=2), encoding="utf-8")
+        return style
     sheet = out_dir / "contact.png"
     cuts, kinds = edl_cuts(cuts_from) if cuts_from else scene_cuts(video, threshold)
     pace = {**pacing(cuts, info["duration_s"]), "transitions": kinds}
@@ -279,7 +301,8 @@ if __name__ == "__main__":
     out = a.out or Path(a.video).with_name(Path(a.video).stem + "_style")
     s = analyze(a.video, out, a.threshold, a.transcript, a.model, a.cuts_from)
     summary = {k: s[k] for k in ("format", "color", "audio")}
-    summary["pacing"] = {k: v for k, v in s["pacing"].items() if k not in ("cuts_s", "shots_s")}
+    if s["pacing"]:
+        summary["pacing"] = {k: v for k, v in s["pacing"].items() if k not in ("cuts_s", "shots_s")}
     if s["music"]:
         summary["music"] = {k: s["music"][k] for k in ("bpm", "cut_on_beat_ratio")}
     if s["speech"]:
@@ -287,6 +310,6 @@ if __name__ == "__main__":
     if a.target:
         summary["match"] = compare(s, json.loads(Path(a.target).read_text(encoding="utf-8")))
     print(json.dumps(summary, indent=2, ensure_ascii=False))
-    print(f"wrote {Path(out) / 'style.json'} and {Path(out) / 'contact.png'}")
+    print(f"wrote {Path(out) / 'style.json'}" + (f" and {Path(out) / 'contact.png'}" if s["contact_sheet"] else ""))
     if a.target and not summary["match"]["ok"]:
         sys.exit(2)  # style mismatch: caller should adjust the edit and re-render
