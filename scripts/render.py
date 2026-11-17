@@ -552,6 +552,10 @@ def render(edl_path, preview=False, dry_run=False):
         if dry_run:
             return {"command": cmd, "duration_s": round(total, 3), "output": str(out)}
         out.parent.mkdir(parents=True, exist_ok=True)
+        # a long edit's graph overflows the Windows 32k command line: FFmpeg 7+ reads it from a file instead
+        i = cmd.index("-filter_complex")
+        (Path(work) / "graph.txt").write_text(cmd[i + 1], encoding="utf-8")
+        cmd[i:i + 2] = ["-/filter_complex", "graph.txt"]
         p = subprocess.run(cmd, cwd=work, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if p.returncode != 0:
             raise RuntimeError(f"ffmpeg failed:\n{p.stderr[-3000:]}")
