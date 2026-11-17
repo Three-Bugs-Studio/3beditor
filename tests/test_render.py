@@ -63,6 +63,14 @@ def test_cut_render(media):
     assert abs(s["audio"]["integrated_lufs"] + 14) < 2
 
 
+def test_long_edit_beats_windows_command_limit(media):
+    clips = [{"src": "ab"[i % 2] + ".mp4", "in": 0, "out": 0.2} for i in range(150)]
+    edl = write_edl(media, clips=clips, captions=[])
+    assert len(" ".join(render.render(edl, dry_run=True)["command"])) > 32767  # too long to pass inline on Windows
+    r = render.render(edl)
+    assert abs(float(probe(r["output"])["format"]["duration"]) - 30.0) < 0.2
+
+
 def test_fade_shortens_timeline(media):
     r = render.render(write_edl(media, transition={"type": "fade", "duration": 0.25}))
     assert abs(r["duration_s"] - (5.0 - 3 * 0.25)) < 3 / 25  # snapped to whole frames: within a frame per transition
